@@ -12,6 +12,9 @@ import random
 
 if __name__ == "__main__":
 
+    if not os.environ["ISSUE_TITLE"].startswith("Create Public Global: "):
+        exit()
+
     NAME_TO_ID_SEP = ";;;"
     VARIABLE_NAME, CONFIDENCE = os.environ["ISSUE_TITLE"].removeprefix("Create Public Global: ").split(NAME_TO_ID_SEP)
     ISSUE_BODY = os.environ["ISSUE_BODY"]
