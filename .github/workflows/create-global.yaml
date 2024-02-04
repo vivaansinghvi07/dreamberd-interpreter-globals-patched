@@ -24,7 +24,7 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: | 
           pip3 install PyGithub
-          python3 create_global_from_issue.py
+          python3 main.py
 
       - name: Commit and push new files to github
         run: |
