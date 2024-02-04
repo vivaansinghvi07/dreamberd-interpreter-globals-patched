@@ -1,10 +1,10 @@
 __doc__ = """
 This script takes an issue containing:
     1) A variable name in the title 
-    2) Pickled data in the form of a string of three-digit numbers (representing bytes)
+    2) Pickled data in the form of a string of four-digit numbers (representing bytes)
 And does the following:
     1) Create an entry for the data in a file with the name pointing to the respective ID 
-    2) Create a file in the `stored_objects` directory with the name of the ID and the information in the variable
+    2) Create a file in the `global_objects` directory with the name of the ID and the information in the variable
 """
 import os 
 import github
