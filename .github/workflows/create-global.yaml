@@ -1,0 +1,35 @@
+name: create-global
+on: 
+  issues:
+    types: [opened]
+jobs:
+  create-global-variable:
+    name: Job for creating and storing the global
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout Python
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Create the global variable
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: | 
+          pip3 install PyGithub
+          python3 create_global_from_issue.py
+
+      - name: Commit and push new files to github
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "added public global variable"
+          git push
