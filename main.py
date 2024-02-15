@@ -21,12 +21,12 @@ if __name__ == "__main__":
     ISSUE_BODY = os.environ["ISSUE_BODY"]
     KEYWORDS = {'class', 'className', 'after', 'const', 'var', 'when', 'if', 'async', 'return', 'delete', 'await', 'previous', 'next', 'reverse', 'export', 'import'}
 
+    if VARIABLE_NAME in KEYWORDS or re.match(r'^f?u?n?c?t?i?o?n?$', VARIABLE_NAME):
+        exit()
+
     value_id = -1
     while value_id < 0 or value_id in os.listdir("global_objects"):
         value_id = random.randint(1, 1000000000)
-
-    if VARIABLE_NAME in KEYWORDS or re.match(r'^f?u?n?c?t?i?o?n?$', VARIABLE_NAME):
-        exit()
 
     with open(f"./global_objects/{value_id}", 'w') as f:
         f.write(ISSUE_BODY)
