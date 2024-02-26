@@ -8,7 +8,6 @@ And does the following:
 """
 import re
 import os 
-import github
 import random
 
 if __name__ == "__main__":
@@ -32,7 +31,3 @@ if __name__ == "__main__":
         f.write(ISSUE_BODY)
     with open(f"./public_globals.txt", 'a') as f:
         f.write(f"{VARIABLE_NAME}{NAME_TO_ID_SEP}{value_id}{NAME_TO_ID_SEP}{CONFIDENCE}\n")
-
-    g = github.Github(auth=github.Auth.Token(os.environ["TOKEN"]))
-    issue = g.get_repo("vivaansinghvi07/dreamberd-interpreter-globals").get_issue(int(os.environ["ISSUE_NUMBER"]))
-    issue.edit(state='closed')

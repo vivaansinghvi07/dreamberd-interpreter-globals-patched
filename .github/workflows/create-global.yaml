@@ -20,10 +20,7 @@ jobs:
         env:
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_BODY: ${{ github.event.issue.body }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: | 
-          pip3 install PyGithub
           python3 main.py
 
       - name: Commit and push new files to github
@@ -31,5 +28,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "added public global variable"
+          git commit -m "added public global variable, resolves #${{ github.event.issue.number }}"
           git push
