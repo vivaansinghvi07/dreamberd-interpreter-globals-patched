@@ -10,6 +10,8 @@ import re
 import os 
 import random
 
+from dreamberd.builtin import KEYWORDS 
+
 if __name__ == "__main__":
 
     if not os.environ["ISSUE_TITLE"].startswith("Create Public Global: "):
@@ -18,7 +20,6 @@ if __name__ == "__main__":
     NAME_TO_ID_SEP = ";;;"
     VARIABLE_NAME, CONFIDENCE = os.environ["ISSUE_TITLE"].removeprefix("Create Public Global: ").split(NAME_TO_ID_SEP)
     ISSUE_BODY = os.environ["ISSUE_BODY"]
-    KEYWORDS = {'class', 'className', 'after', 'const', 'var', 'when', 'if', 'async', 'return', 'delete', 'await', 'previous', 'next', 'reverse', 'export', 'import'}
 
     if VARIABLE_NAME in KEYWORDS or re.match(r'^f?u?n?c?t?i?o?n?$', VARIABLE_NAME):
         exit()

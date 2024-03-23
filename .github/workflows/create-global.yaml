@@ -21,6 +21,7 @@ jobs:
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_BODY: ${{ github.event.issue.body }}
         run: | 
+          pip install -U dreamberd
           python3 main.py
 
       - name: Commit and push new files to github
